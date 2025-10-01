@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # TerraBeyond 🌌
 
 Portal interactivo para explorar exoplanetas con IA.  
@@ -27,3 +28,7 @@ Creado como proyecto del **NASA Space Apps Challenge 2025**.
 
 ## ✅ Estado actual
 Día 1 – estructura básica y branding inicial.  
+=======
+# Terrabeyond
+Portal interactivo para explorar exoplanetas con IA – NASA Space Apps Challenge 2025
+>>>>>>> 2906293676d0e447ae179c46d6bf21358395b753
