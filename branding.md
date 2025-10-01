@@ -16,3 +16,18 @@
 - **Versión Principal**: Texto "TerraBeyond" + ícono planeta/orbita
 - **Colores**: Azul principal con acento dorado
 - **Formato**: PNG transparente
+
+## 🪐 Uso del Logo
+
+### Espaciado Mínimo
+- Mantener 20px de espacio alrededor del logo
+- No colocar texto u otros elementos muy cerca
+
+### Versiones
+- **Color**: Sobre fondos oscuros (recomendado)
+- **Blanco**: Para fondos de color (si es necesario)
+
+## 📏 Guías de Aplicación
+- Header: Logo + nombre "TerraBeyond"
+- Favicon: Solo el planeta (para espacios pequeños)
+- Documentos: Logo completo con nombre
