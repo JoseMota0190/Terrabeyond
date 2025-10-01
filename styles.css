@@ -1,0 +1,42 @@
+:root {
+  --bg: #0b0f1a;
+  --accent1: #7fffd4;
+  --accent2: #ffd86b;
+  --accent3: #ff7a7a;
+  --accent4: #56d6ff;
+  --text: #f0f0f0;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+header {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  text-align: center;
+}
+
+nav a {
+  margin: 0 10px;
+  color: var(--accent1);
+  text-decoration: none;
+}
+
+.hero {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.buttons .btn {
+  margin: 10px;
+  padding: 12px 20px;
+  background: var(--accent2);
+  border-radius: 8px;
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+}
