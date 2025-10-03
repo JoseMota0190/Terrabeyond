@@ -4,21 +4,39 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TerraBeyond – Explorando nuevos mundos con IA</title>
+  <link rel="icon" href="assets/favicon.png">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <!-- Barra de navegación -->
-  <header class="navbar">
-    <div class="logo">🌌 TerraBeyond</div>
-    <nav>
-      <a href="academico.html">Laboratorio de Investigación</a>
-      <a href="general.html">Exploración General</a>
-      <a href="ninos.html">Pequeños Astronautas</a>
-    </nav>
-  </header>
+  <nav class="navbar">
+    <a href="#inicio" class="logo-link">
+      <div class="logo-container">
+        <img src="assets/favicon.png" alt="TerraBeyond Logo" class="logo">
+        <span class="logo-text">TerraBeyond</span>
+      </div>
+    </a>
+     
+    <div class="nav-links">
+  <a href="#" class="nav-button lab-button">
+    <span class="nav-icon">🔬</span>
+    <span class="nav-text">Laboratorio</span>
+  </a>
+  
+  <a href="#" class="nav-button explore-button">
+    <span class="nav-icon">🪐</span>
+    <span class="nav-text">Exploración</span>
+  </a>
+  
+  <a href="#" class="nav-button kids-button">
+    <span class="nav-icon">🚀</span>
+    <span class="nav-text">Pequeños Astronautas</span>
+  </a>
+</div>
+  </nav>
 
   <!-- Hero principal -->
-  <main class="hero">
+  <main class="hero" id="inicio">
     <h1>Tu Portal Interactivo para Explorar Exoplanetas con IA</h1>
     <p>Elige tu camino cósmico y descubre nuevos mundos.</p>
 
@@ -32,7 +50,7 @@
     <h2>🪐 Exploración General</h2>
     <p>Descubre los mundos más extraños con historias fascinantes e interactividad.</p>
   </a>
-  <a href="ninos.html" class="card card-ninos">
+  <a href="kids.html" class="card card-ninos">
     <h2>🚀 Pequeños Astronautas</h2>
     <p>Explora el espacio jugando y aprendiendo con aventuras estelares.</p>
   </a>
@@ -44,7 +62,6 @@
     <p>
       <a href="contacto.html">Contacto</a> | 
       <a href="#">Recursos NASA</a> | 
-      <a href="log-dia1.md">Log del Día 1</a>
     </p>
   </footer>
 </body>

@@ -1,131 +1,371 @@
+/* ===================================== */
+/* VARIABLES CSS               */
+/* ===================================== */
 :root {
-  --bg: #0b0f1a;
-  --text: #ffffff;
-  --accent-academico: #2b2d83;   /* azul violeta */
-  --accent-general: #20c997;     /* verde agua */
-  --accent-aventura: #ffb84d;    /* naranja */
+    --bg-dark: #0b0f1a; /* Color de fondo oscuro principal */
+    --text: #ffffff; /* Color de texto general */
+
+    /* Colores de acento para las secciones/tarjetas */
+    --accent-academico: #2b2d83; /* Azul violeta */
+    --accent-general: #20c997;   /* Verde agua */
+    --accent-aventura: #ffb84d;  /* Naranja */
+
+    /* Colores para la Navbar y Sombras */
+    --navbar-bg: rgba(0, 0, 0, 0.6); /* Fondo semitransparente para la navbar */
+    --card-shadow-color: rgba(0, 0, 0, 0.5); /* Color base para las sombras de tarjetas */
+
+    /* Tamaños de fuente para la navegación */
+    --nav-link-font-size: 1.15rem; /* Tamaño de los enlaces del nav */
+    --nav-logo-font-size: 1.8rem;  /* Tamaño del logo en el nav */
 }
 
-/* Reset */
+
+/* ===================================== */
+/* RESET & BASE             */
+/* ===================================== */
 body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
+    margin: 0; /* Elimina el margen predeterminado del body */
+    font-family: 'Poppins', sans-serif; /* Fuente principal del proyecto */
 
-  /* Fondo combinado: gradiente + imagen */
-  background: 
-    linear-gradient(rgba(11, 15, 26, 0.9), rgba(11, 15, 26, 0.9)),
-    url('assets/space-bg.jpg') no-repeat center center fixed;
-  background-size: cover;
-
-  color: var(--text);
+    /* Fondo de la página: gradiente oscuro sobre una imagen espacial */
+    background: 
+        linear-gradient(rgba(11, 15, 26, 0.9), rgba(11, 15, 26, 0.9)), 
+        url('./assets/fondo-index.jpg') no-repeat center center fixed; 
+    background-size: cover; 
+    
+    color: var(--text); 
+    padding-top: 0px; 
+    line-height: 1.6; 
 }
 
-/* Navbar */
+/* ===================================== */
+/* NAVBAR                                */
+/* ===================================== */
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background: rgba(0, 0, 0, 0.6);
-  position: sticky;
-  top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(0, 0, 0, 0.7); /* Fondo semitransparente elegante */
+    backdrop-filter: blur(6px); /* efecto de vidrio */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-sizing: border-box;
+    width: 100%;
 }
 
-.navbar a {
-  margin-left: 1.5rem;
-  color: var(--text);
-  text-decoration: none;
-  font-weight: bold;
+/* Logo contenedor (favicon + texto) */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-/* Hero */
+.logo-container img {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px; /* esquinas suaves para favicon */
+}
+
+.logo-container .logo-text {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--text);
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.logo-link {
+    text-decoration: none;  /* Quita el subrayado */
+    color: inherit;         /* Mantiene el color del texto */
+    display: inline-block;  /* Permite transformaciones */
+}
+
+.logo-link:hover {
+    transform: scale(1.05); /* Efecto hover */
+    transition: transform 0.2s ease;
+}
+
+/* Mantén tu .logo-container actual */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+/* Links de navegación */
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: var(--nav-link-font-size);
+    padding: 0.5rem 0;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--accent-general);
+    border-bottom: 2px solid var(--accent-general);
+}
+
+/* ===================================== */
+/* MEDIA QUERIES - NAVBAR                */
+/* ===================================== */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 0.5rem;
+        text-align: center;
+    }
+    
+    .logo-container {
+        justify-content: center;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+    }
+
+    .nav-links a {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        width: 100%;
+        font-size: 1rem;
+    }
+
+    .nav-links a:last-child {
+        border-bottom: none;
+    }
+
+    .logo-container .logo-text {
+        font-size: 1.2rem;
+    }
+}
+
+/* ===================================== */
+/* HERO SECTION             */
+/* ===================================== */
 .hero {
-  text-align: center;
-  padding: 3rem 1rem;
+    text-align: center; /* Centra el texto del hero */
+    padding: 3rem 1rem; /* Relleno general */
+    padding-top: 6rem; /* Margen superior para evitar solapamiento con la navbar */
 }
 
 .hero h1 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
+    font-size: 2.5rem; /* Tamaño de fuente grande para el título principal */
+    margin-bottom: 0.8rem; /* Espacio debajo del título */
+    line-height: 1.2; /* Espaciado de línea para el título */
 }
 
 .hero p {
-  font-size: 1.2rem;
-  opacity: 0.9;
+    font-size: 1.3rem; /* Tamaño de fuente para el subtítulo/descripción */
+    opacity: 0.9; /* Ligera transparencia */
+    max-width: 800px; /* Limita el ancho del párrafo para mejor legibilidad */
+    margin: 0 auto; /* Centra el párrafo horizontalmente */
 }
 
-/* Sections */
+/* ===================================== */
+/* CARDS SECTION             */
+/* ===================================== */
 .cards {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  margin-top: 2rem;
+    display: flex; /* Usa Flexbox para alinear las tarjetas */
+    justify-content: center; /* Centra las tarjetas horizontalmente */
+    flex-wrap: wrap; /* Permite que las tarjetas salten a la siguiente línea si no caben */
+    gap: 2rem; /* Espacio entre las tarjetas */
+    margin-top: 4rem; /* Margen superior para separar del hero */
+    padding: 0 1rem; /* Relleno horizontal para evitar que las tarjetas se peguen a los bordes */
 }
 
-/* Estilo base de las cards */
+/* Estilo base de cada tarjeta */
 .card {
-  flex: 1 1 280px;       /* cada card ocupa mínimo 280px */
-  max-width: 320px;      /* ancho máximo */
-  padding: 1.5rem;
-  border-radius: 12px;
-  text-align: center;
-  color: #fff;
-  text-decoration: none;
-  transition: transform 0.3s, box-shadow 0.3s;
+    flex: 1 1 280px; /* Propiedad shorthand para flex-grow, flex-shrink y flex-basis (tamaño base) */
+    max-width: 350px; /* Ancho máximo para cada tarjeta */
+    padding: 2rem; /* Relleno interno de la tarjeta */
+    border-radius: 15px; /* Esquinas redondeadas */
+    text-align: center; /* Centra el texto dentro de la tarjeta */
+    color: var(--text); /* Color de texto blanco */
+    text-decoration: none; /* Quita el subrayado si la tarjeta es un enlace */
+    
+    /* Fondo semitransparente con efecto de "vidrio esmerilado" */
+    background-color: rgba(255, 255, 255, 0.08); /* Fondo blanco con transparencia */
+    backdrop-filter: blur(8px); /* Efecto de desenfoque detrás de la tarjeta */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil blanco transparente */
+    
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave para hover */
+    
+    /* Flexbox para centrar el contenido (iconos, títulos, párrafos) dentro de la tarjeta */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    transform: translateY(-8px); /* Efecto de elevación al pasar el ratón */
+    box-shadow: 0 15px 30px var(--card-shadow-color); /* Sombra más pronunciada al pasar el ratón */
 }
 
-/* Gradientes */
+/* Iconos dentro de las tarjetas (si usas elementos con clase 'icon') */
+.card .icon {
+    font-size: 4em; /* Iconos grandes */
+    margin-bottom: 0.5em; /* Espacio debajo del icono */
+    line-height: 1; /* Ajusta el line-height para el icono */
+}
+
+/* Títulos dentro de las tarjetas */
+.card h3 {
+    font-size: 1.7rem; /* Tamaño de título dentro de la tarjeta */
+    margin-bottom: 0.8rem; /* Espacio debajo del título */
+    font-weight: 600; /* Peso de la fuente */
+}
+
+/* Párrafos dentro de las tarjetas */
+.card p {
+    font-size: 1.05rem; /* Tamaño de fuente para el párrafo */
+    opacity: 0.85; /* Ligera transparencia */
+}
+
+/* Estilos de color específicos para cada tipo de tarjeta (usando el borde superior y sombra) */
 .card-academico {
-  background: linear-gradient(135deg, #2b2d83, #5b5ee0);
+    border-top: 5px solid var(--accent-academico); /* Borde superior de color acento */
+}
+.card-academico:hover {
+    box-shadow: 0 0 25px var(--accent-academico); /* Sombra de neón al pasar el ratón */
 }
 
 .card-general {
-  background: linear-gradient(135deg, #20c997, #1a9e7a);
+    border-top: 5px solid var(--accent-general);
+}
+.card-general:hover {
+    box-shadow: 0 0 25px var(--accent-general);
 }
 
 .card-ninos {
-  background: linear-gradient(135deg, #ffb84d, #ff7a00);
-  color: #fff;
+    border-top: 5px solid var(--accent-aventura);
+}
+.card-ninos:hover {
+    box-shadow: 0 0 25px var(--accent-aventura);
 }
 
-/* --- Responsividad --- */
-
-/* En pantallas chicas (< 768px), apilar las cards en columna */
+/* ===================================== */
+/* MEDIA QUERIES - CARDS           */
+/* ===================================== */
 @media (max-width: 768px) {
-  .cards {
-    flex-direction: column;
-    align-items: center;
-  }
-  .card {
-    width: 90%;
-    max-width: 400px;
-  }
+    .cards {
+        flex-direction: column; /* Apila las tarjetas en columna para móviles */
+        align-items: center; /* Centra las tarjetas apiladas */
+        gap: 1.5rem; /* Reduce el espacio entre tarjetas */
+    }
+    .card {
+        width: 90%; /* Las tarjetas ocupan casi todo el ancho */
+        max-width: 400px; /* Límite de ancho para tarjetas en móvil */
+        padding: 1.5rem; /* Reduce el padding interno */
+    }
+    .hero h1 {
+        font-size: 2rem; /* Reduce el título del hero */
+    }
+    .hero p {
+        font-size: 1rem; /* Reduce el párrafo del hero */
+    }
 }
 
-/* En pantallas grandes (> 1200px), las tres cards se distribuyen centradas */
 @media (min-width: 1200px) {
-  .cards {
-    justify-content: space-evenly;
-  }
+    .cards {
+        justify-content: space-evenly; /* Distribuye las tarjetas uniformemente en pantallas grandes */
+        max-width: 1200px; /* Limita el ancho total del contenedor de tarjetas */
+        margin-left: auto; /* Centra el contenedor de tarjetas */
+        margin-right: auto;
+    }
 }
 
-
-/* Footer */
+/* ===================================== */
+/* FOOTER                 */
+/* ===================================== */
 footer {
-  text-align: center;
-  padding: 1rem;
-  background: rgba(0, 0, 0, 0.7);
-  margin-top: 3rem;
+    text-align: center; 
+    padding: 1.5rem; 
+    background: rgba(0, 0, 0, 0.7); 
+    margin-top: 5rem; 
+    box-sizing: border-box; 
+    width: 100%; 
 }
 
 footer a {
-  color: var(--text);
-  margin: 0 8px;
-  text-decoration: none;
+    color: var(--text); 
+    margin: 0 15px; 
+    text-decoration: none; 
+    font-weight: 500; 
+    transition: color 0.3s ease; 
+}
+
+footer a:hover {
+    color: var(--accent-general); 
+}
+
+
+
+/* ===================================== */
+/* Seccion Kids        */
+/* ===================================== */
+
+/* Hero para pequeños astronautas */
+.hero-kids {
+  background: linear-gradient(to bottom, #0b0f1a, #1a1f3c);
+  color: white;
+  text-align: center;
+  padding: 5rem 2rem;
+}
+
+.hero-kids h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero-kids p {
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+/* Cards container */
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 3rem 2rem;
+}
+
+/* Cada card */
+.card {
+  background: #14182b;
+  color: white;
+  border-radius: 15px;
+  padding: 1.5rem;
+  text-align: center;
+  width: 300px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0px 10px 20px rgba(0,0,0,0.6);
+}
+
+/* Imagen dentro de cada card */
+.card-img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  margin-bottom: 1rem;
 }
