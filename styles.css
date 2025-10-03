@@ -54,7 +54,7 @@ body {
   opacity: 0.9;
 }
 
-/* Cards */
+/* Sections */
 .cards {
   display: flex;
   justify-content: center;
@@ -63,9 +63,10 @@ body {
   margin-top: 2rem;
 }
 
+/* Estilo base de las cards */
 .card {
-  flex: 1 1 250px;
-  max-width: 300px;
+  flex: 1 1 280px;       /* cada card ocupa mínimo 280px */
+  max-width: 320px;      /* ancho máximo */
   padding: 1.5rem;
   border-radius: 12px;
   text-align: center;
@@ -79,18 +80,41 @@ body {
   box-shadow: 0 8px 20px rgba(0,0,0,0.5);
 }
 
+/* Gradientes */
 .card-academico {
-  background: var(--accent-academico);
+  background: linear-gradient(135deg, #2b2d83, #5b5ee0);
 }
 
 .card-general {
-  background: var(--accent-general);
+  background: linear-gradient(135deg, #20c997, #1a9e7a);
 }
 
-.card-aventura {
-  background: var(--accent-aventura);
-  color: #000;
+.card-ninos {
+  background: linear-gradient(135deg, #ffb84d, #ff7a00);
+  color: #fff;
 }
+
+/* --- Responsividad --- */
+
+/* En pantallas chicas (< 768px), apilar las cards en columna */
+@media (max-width: 768px) {
+  .cards {
+    flex-direction: column;
+    align-items: center;
+  }
+  .card {
+    width: 90%;
+    max-width: 400px;
+  }
+}
+
+/* En pantallas grandes (> 1200px), las tres cards se distribuyen centradas */
+@media (min-width: 1200px) {
+  .cards {
+    justify-content: space-evenly;
+  }
+}
+
 
 /* Footer */
 footer {
