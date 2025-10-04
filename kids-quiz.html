@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TerraBeyond | Curiosidades con Profesor Albert Sagan</title>
+  <style>
+    /* RESET Y BASE */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background: linear-gradient(135deg, #1a2980 0%, #26d0ce 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      padding: 20px;
+      color: #333;
+    }
+    
+    /* HEADER SIMPLE */
+    .simple-header {
+      text-align: center;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      border: 3px solid #4A90E2;
+    }
+    
+    .simple-header h1 {
+      font-size: 2.5rem;
+      color: #1a2980;
+      margin-bottom: 10px;
+    }
+    
+    .simple-header p {
+      font-size: 1.2rem;
+      color: #666;
+    }
+    
+    /* CONTENEDOR PRINCIPAL */
+    .kids-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    /* CHAT SECTION */
+    .chat-section {
+      flex: 2;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      border: 3px solid #4A90E2;
+    }
+    
+    .chat-box {
+      height: 400px;
+      overflow-y: auto;
+      border: 2px solid #4A90E2;
+      border-radius: 15px;
+      padding: 15px;
+      background: #f0f8ff;
+      margin-bottom: 15px;
+    }
+    
+    .bot-message {
+      background: #e6f2ff;
+      padding: 12px 15px;
+      border-radius: 15px;
+      margin: 8px 0;
+      color: #333;
+      border: 2px solid #4A90E2;
+      font-size: 16px;
+    }
+    
+    .user-message {
+      background: #d1ecf1;
+      padding: 12px 15px;
+      border-radius: 15px;
+      margin: 8px 0;
+      text-align: right;
+      color: #000;
+      border: 2px solid #17a2b8;
+      font-size: 16px;
+    }
+    
+    /* OPCIONES DE BOTONES */
+    .options-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    
+    .option-btn {
+      background: #1a2980;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 15px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+    
+    .option-btn:hover {
+      background: #15246d;
+      transform: scale(1.05);
+    }
+    
+    .option-btn:active {
+      transform: scale(0.95);
+    }
+    
+    /* TEACHER SECTION - CON NOMBRE ALBERT SAGAN */
+    .teacher-section {
+      flex: 1;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 0;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      border: 3px solid #4A90E2;
+      display: flex;
+      flex-direction: column;
+      height: fit-content;
+    }
+    
+    .teacher-img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 17px 17px 0 0;
+      border-bottom: 4px solid #4A90E2;
+    }
+    
+    .teacher-info {
+      background: #e6f2ff;
+      padding: 15px;
+      border-radius: 0 0 15px 15px;
+      border: 2px solid #4A90E2;
+      margin: 0;
+    }
+    
+    .teacher-name {
+      font-size: 1.3em;
+      color: #1a2980;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    
+    /* QUIZ SECTION */
+    .quiz-section {
+      flex: 2;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      border: 3px solid #4A90E2;
+    }
+    
+    .quiz-container {
+      margin: 15px 0;
+      padding: 20px;
+      background: #f0f8ff;
+      border-radius: 15px;
+      border: 2px solid #4A90E2;
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .quiz-question {
+      font-size: 1.4em;
+      color: #1a2980;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    
+    .quiz-options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      width: 100%;
+      max-width: 500px;
+    }
+    
+    .quiz-option {
+      background: #1a2980;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 15px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.3s;
+    }
+    
+    .quiz-option:hover {
+      background: #15246d;
+    }
+    
+    .quiz-result {
+      margin: 15px 0;
+      font-size: 1.4em;
+      color: #333;
+      font-weight: bold;
+      background: #e6f2ff;
+      padding: 10px;
+      border-radius: 10px;
+      border: 2px solid #4A90E2;
+    }
+    
+    .score-display {
+      font-size: 1.6em;
+      color: #1a2980;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+    
+    .buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .buttons button {
+      margin: 5px;
+      background: #1a2980;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    
+    .buttons button:hover {
+      background: #15246d;
+    }
+    
+    /* FOOTER MEJORADO */
+    .simple-footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      border: 3px solid #4A90E2;
+    }
+    
+    .footer-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+    
+    .footer-btn {
+      background: #1a2980;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.3s;
+    }
+    
+    .footer-btn:hover {
+      background: #15246d;
+    }
+    
+    .footer-btn.home {
+      background: #26d0ce;
+    }
+    
+    .footer-btn.home:hover {
+      background: #1fb5b3;
+    }
+    
+    .footer-btn.kids {
+      background: #4A90E2;
+    }
+    
+    .footer-btn.kids:hover {
+      background: #3a7bc8;
+    }
+    
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .kids-container {
+        flex-direction: column;
+      }
+      
+      .teacher-section {
+        order: -1;
+        margin-bottom: 20px;
+      }
+      
+      .simple-header h1 {
+        font-size: 2rem;
+      }
+      
+      .options-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .teacher-img {
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="simple-header">
+    <h1>🔭 Curiosidades Científicas</h1>
+    <p>Con el Profesor Albert Sagan - Aprende y diviértete con la ciencia</p>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="kids-container">
+    <!-- Chat -->
+    <section class="chat-section">
+      <div id="chat-box" class="chat-box">
+        <div class="bot-message">🔬 ¡Hola joven científico! Soy el Profesor Albert Sagan. ¿Estás listo para explorar las maravillas del universo y poner a prueba tus conocimientos?</div>
+      </div>
+      <div id="options-container" class="options-container">
+        <!-- Las opciones se generarán automáticamente aquí -->
+      </div>
+    </section>
+
+    <!-- Profesor ALBERT SAGAN -->
+    <aside class="teacher-section">
+      <img src="assets/profe.png" alt="Profesor Albert Sagan" class="teacher-img" onerror="this.style.display='none'">
+      <div class="teacher-info">
+        <div class="teacher-name">👨‍🏫 Profesor Albert Sagan</div>
+        <p>Tu guía en el fascinante mundo de la ciencia. Juntos exploraremos los misterios del cosmos.</p>
+      </div>
+    </aside>
+
+    <!-- Quiz Section -->
+    <section class="quiz-section">
+      <h3>🧪 Cuestionario Científico</h3>
+      <div id="quiz-container" class="quiz-container">
+        <div id="quiz-content" class="quiz-content">
+          <p>Selecciona un tema para comenzar el cuestionario...</p>
+        </div>
+      </div>
+      <div id="quiz-result" class="quiz-result"></div>
+      <div id="score-display" class="score-display"></div>
+      <div class="buttons">
+        <button id="restart-btn">🔄 Nuevo Cuestionario</button>
+        <button id="print-btn">🖨️ Imprimir Resultados</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="simple-footer">
+    <p>© 2025 TerraBeyond - Explorando juntos el universo</p>
+    <div class="footer-buttons">
+      <a href="index.html" class="footer-btn home">🏠 Volver al Inicio</a>
+      <a href="kids.html" class="footer-btn kids">🧒 Volver a TerraBeyond Kids</a>
+    </div>
+  </footer>
+
+  <script>
+    const chatBox = document.getElementById("chat-box");
+    const optionsContainer = document.getElementById("options-container");
+    const quizContainer = document.getElementById("quiz-container");
+    const quizContent = document.getElementById("quiz-content");
+    const quizResult = document.getElementById("quiz-result");
+    const scoreDisplay = document.getElementById("score-display");
+    
+    const restartBtn = document.getElementById("restart-btn");
+    const printBtn = document.getElementById("print-btn");
+
+    // TEMAS CIENTÍFICOS CON EXPLICACIONES Y PREGUNTAS
+    const scientificTopics = [
+      {
+        topic: "El Sistema Solar",
+        explanation: "Nuestro sistema solar está formado por el Sol y todos los objetos que giran a su alrededor: 8 planetas, lunas, asteroides, cometas y otros cuerpos celestes. El Sol contiene el 99.8% de la masa de todo el sistema solar.",
+        questions: [
+          {
+            question: "¿Cuál es el planeta más grande del sistema solar?",
+            options: ["Júpiter", "Saturno", "Neptuno", "Tierra"],
+            correct: 0
+          },
+          {
+            question: "¿Qué planeta es conocido como el 'planeta rojo'?",
+            options: ["Venus", "Marte", "Júpiter", "Mercurio"],
+            correct: 1
+          },
+          {
+            question: "¿Cuál es el planeta más cercano al Sol?",
+            options: ["Venus", "Tierra", "Mercurio", "Marte"],
+            correct: 2
+          },
+          {
+            question: "¿Qué planeta tiene anillos visibles desde la Tierra?",
+            options: ["Júpiter", "Urano", "Saturno", "Neptuno"],
+            correct: 2
+          },
+          {
+            question: "¿Cuál es el único planeta conocido que tiene vida?",
+            options: ["Marte", "Tierra", "Venus", "Júpiter"],
+            correct: 1
+          }
+        ]
+      },
+      {
+        topic: "Los Dinosaurios",
+        explanation: "Los dinosaurios fueron reptiles que dominaron la Tierra durante más de 160 millones de años. Existieron dinosaurios de todos los tamaños, desde el pequeño Compsognathus hasta el gigantesco Argentinosaurus. Se extinguieron hace 65 millones de años.",
+        questions: [
+          {
+            question: "¿Qué evento causó probablemente la extinción de los dinosaurios?",
+            options: ["Un gran terremoto", "Un impacto de asteroide", "Una epidemia mundial", "Una edad de hielo"],
+            correct: 1
+          },
+          {
+            question: "¿Qué dinosaurio es conocido por sus tres cuernos?",
+            options: ["Estegosaurio", "Triceratops", "Tiranosaurio Rex", "Velociraptor"],
+            correct: 1
+          },
+          {
+            question: "¿Qué dinosaurio era carnívoro y uno de los mayores depredadores?",
+            options: ["Triceratops", "Brontosaurio", "Tiranosaurio Rex", "Estegosaurio"],
+            correct: 2
+          },
+          {
+            question: "¿Qué dinosaurio tenía placas óseas en la espalda?",
+            options: ["Triceratops", "Estegosaurio", "Tiranosaurio Rex", "Pterodáctilo"],
+            correct: 1
+          },
+          {
+            question: "¿Qué animal actual está más relacionado con los dinosaurios?",
+            options: ["Cocodrilo", "Tortuga", "Pájaro", "Lagarto"],
+            correct: 2
+          }
+        ]
+      },
+      {
+        topic: "El Cuerpo Humano",
+        explanation: "El cuerpo humano es una máquina increíblemente compleja. Está formado por billones de células que trabajan juntas. Tenemos 206 huesos, más de 600 músculos y un cerebro con aproximadamente 86 mil millones de neuronas.",
+        questions: [
+          {
+            question: "¿Qué órgano bombea sangre por todo el cuerpo?",
+            options: ["Pulmones", "Hígado", "Corazón", "Cerebro"],
+            correct: 2
+          },
+          {
+            question: "¿Qué parte del cuerpo contiene aproximadamente la mitad de nuestros huesos?",
+            options: ["Manos y pies", "Cabeza", "Tronco", "Piernas"],
+            correct: 0
+          },
+          {
+            question: "¿Qué órgano nos permite respirar?",
+            options: ["Corazón", "Estómago", "Pulmones", "Riñones"],
+            correct: 2
+          },
+          {
+            question: "¿Qué parte del cerebro controla el equilibrio?",
+            options: ["Cerebelo", "Hipotálamo", "Tálamo", "Corteza cerebral"],
+            correct: 0
+          },
+          {
+            question: "¿Cuál es el hueso más largo del cuerpo humano?",
+            options: ["Húmero", "Fémur", "Tibia", "Radio"],
+            correct: 1
+          }
+        ]
+      },
+      {
+        topic: "Los Océanos",
+        explanation: "Los océanos cubren más del 70% de la superficie de la Tierra y contienen el 97% del agua del planeta. El océano más grande es el Pacífico, que es más grande que toda la superficie terrestre combinada. Los océanos son esenciales para la vida en la Tierra.",
+        questions: [
+          {
+            question: "¿Qué porcentaje de la Tierra está cubierto por océanos?",
+            options: ["50%", "60%", "70%", "80%"],
+            correct: 2
+          },
+          {
+            question: "¿Cuál es el océano más grande?",
+            options: ["Atlántico", "Índico", "Pacífico", "Ártico"],
+            correct: 2
+          },
+          {
+            question: "¿Qué animal marino es el más grande del mundo?",
+            options: ["Tiburón ballena", "Ballena azul", "Calamar gigante", "Tiburón blanco"],
+            correct: 1
+          },
+          {
+            question: "¿Qué causa las mareas en los océanos?",
+            options: ["El viento", "La rotación de la Tierra", "La gravedad de la Luna", "Las corrientes marinas"],
+            correct: 2
+          },
+          {
+            question: "¿En qué océano se encuentra el Triángulo de las Bermudas?",
+            options: ["Pacífico", "Atlántico", "Índico", "Ártico"],
+            correct: 1
+          }
+        ]
+      }
+    ];
+
+    let currentTopic = null;
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let quizActive = false;
+
+    function addMessage(msg, sender="bot") {
+      const div = document.createElement("div");
+      div.className = sender === "bot" ? "bot-message" : "user-message";
+      div.innerText = msg;
+      chatBox.appendChild(div);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function showTopicOptions() {
+      optionsContainer.innerHTML = '';
+      addMessage("🔬 Elige un tema científico para explorar:");
+      
+      scientificTopics.forEach(topic => {
+        const button = document.createElement("button");
+        button.className = "option-btn";
+        button.innerText = topic.topic;
+        button.addEventListener("click", () => {
+          selectTopic(topic);
+        });
+        optionsContainer.appendChild(button);
+      });
+    }
+
+    function selectTopic(topic) {
+      currentTopic = topic;
+      currentQuestionIndex = 0;
+      score = 0;
+      quizActive = true;
+      
+      addMessage(topic.topic, "user");
+      
+      setTimeout(() => {
+        addMessage(`📚 ${topic.explanation}`);
+        
+        setTimeout(() => {
+          addMessage("¿Listo para el cuestionario? ¡Vamos a poner a prueba tus conocimientos!");
+          startQuiz();
+        }, 2000);
+      }, 1000);
+    }
+
+    function startQuiz() {
+      if (!currentTopic || currentQuestionIndex >= currentTopic.questions.length) {
+        endQuiz();
+        return;
+      }
+      
+      const question = currentTopic.questions[currentQuestionIndex];
+      quizContent.innerHTML = '';
+      
+      const questionElement = document.createElement("div");
+      questionElement.className = "quiz-question";
+      questionElement.innerText = question.question;
+      quizContent.appendChild(questionElement);
+      
+      const optionsContainer = document.createElement("div");
+      optionsContainer.className = "quiz-options";
+      
+      question.options.forEach((option, index) => {
+        const optionButton = document.createElement("button");
+        optionButton.className = "quiz-option";
+        optionButton.innerText = option;
+        optionButton.addEventListener("click", () => {
+          checkAnswer(index, question.correct);
+        });
+        optionsContainer.appendChild(optionButton);
+      });
+      
+      quizContent.appendChild(optionsContainer);
+      quizResult.innerText = "";
+    }
+
+    function checkAnswer(selectedIndex, correctIndex) {
+      const question = currentTopic.questions[currentQuestionIndex];
+      let resultMessage = "";
+      
+      if (selectedIndex === correctIndex) {
+        score++;
+        resultMessage = "✅ ¡Correcto! ¡Buen trabajo!";
+      } else {
+        resultMessage = `❌ Incorrecto. La respuesta correcta es: ${question.options[correctIndex]}`;
+      }
+      
+      quizResult.innerText = resultMessage;
+      addMessage(`Pregunta ${currentQuestionIndex + 1}: ${resultMessage}`, "user");
+      
+      currentQuestionIndex++;
+      
+      setTimeout(() => {
+        if (currentQuestionIndex < currentTopic.questions.length) {
+          startQuiz();
+        } else {
+          endQuiz();
+        }
+      }, 2000);
+    }
+
+    function endQuiz() {
+      quizActive = false;
+      const percentage = Math.round((score / currentTopic.questions.length) * 100);
+      
+      let message = "";
+      if (percentage >= 80) {
+        message = "🎉 ¡Excelente! Eres un verdadero científico.";
+      } else if (percentage >= 60) {
+        message = "👍 ¡Buen trabajo! Sigues aprendiendo.";
+      } else {
+        message = "💡 Sigue estudiando, cada error es una oportunidad para aprender.";
+      }
+      
+      scoreDisplay.innerText = `Puntuación: ${score}/${currentTopic.questions.length} (${percentage}%)`;
+      quizResult.innerText = message;
+      quizContent.innerHTML = `<p>¡Cuestionario completado! ${message}</p>`;
+      
+      addMessage(`He completado el cuestionario de ${currentTopic.topic} con ${score} de ${currentTopic.questions.length} aciertos.`, "user");
+      
+      setTimeout(() => {
+        addMessage(`📊 ${message} Obtuviste ${score} de ${currentTopic.questions.length} respuestas correctas (${percentage}%). ¿Te gustaría explorar otro tema científico?`);
+        showTopicOptions();
+      }, 1500);
+    }
+
+    // Botón reiniciar
+    restartBtn.addEventListener("click", () => {
+      currentTopic = null;
+      currentQuestionIndex = 0;
+      score = 0;
+      quizActive = false;
+      chatBox.innerHTML = "";
+      optionsContainer.innerHTML = "";
+      quizContent.innerHTML = "<p>Selecciona un tema para comenzar el cuestionario...</p>";
+      quizResult.innerText = "";
+      scoreDisplay.innerText = "";
+      addMessage("🔬 ¡Hola joven científico! Elige un tema para comenzar nuestra aventura científica.");
+      showTopicOptions();
+    });
+
+    // Botón imprimir
+    printBtn.addEventListener("click", () => {
+      window.print();
+    });
+
+    // Iniciar la aplicación
+    setTimeout(() => {
+      showTopicOptions();
+    }, 1000);
+  </script>
+</body>
+</html>

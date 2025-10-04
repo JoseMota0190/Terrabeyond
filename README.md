@@ -12,8 +12,8 @@ Creado como proyecto del **NASA Space Apps Challenge 2025**.
 ## 📂 Estructura inicial
 /terrabeyond
  ├── index.html
- ├── curiosidad.html
- ├── ninos.html
+ ├── general.html
+ ├── kids.html
  ├── academico.html
  ├── contacto.html
  ├── styles.css
@@ -26,8 +26,6 @@ Creado como proyecto del **NASA Space Apps Challenge 2025**.
 2. Abrir `index.html` en el navegador.  
 3. También disponible online vía **GitHub Pages** (activar en el repo).  
 
-## ✅ Estado actual
-Día 1 – estructura básica y branding inicial.  
 =======
 # Terrabeyond
 Portal interactivo para explorar exoplanetas con IA – NASA Space Apps Challenge 2025

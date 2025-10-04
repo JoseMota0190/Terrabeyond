@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TerraBeyond | Kids Dibujo</title>
+  <style>
+    /* RESET Y BASE */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      min-height: 100vh;
+      padding: 20px;
+      color: #333;
+    }
+    
+    /* HEADER SIMPLE */
+    .simple-header {
+      text-align: center;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      border: 3px solid #ffd27f;
+    }
+    
+    .simple-header h1 {
+      font-size: 2.5rem;
+      color: #4A90E2;
+      margin-bottom: 10px;
+    }
+    
+    .simple-header p {
+      font-size: 1.2rem;
+      color: #666;
+    }
+    
+    /* CONTENEDOR PRINCIPAL */
+    .kids-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    /* CHAT SECTION */
+    .chat-section {
+      flex: 2;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      border: 3px solid #a78bfa;
+    }
+    
+    .chat-box {
+      height: 400px;
+      overflow-y: auto;
+      border: 2px solid #ffd27f;
+      border-radius: 15px;
+      padding: 15px;
+      background: #fffaf0;
+      margin-bottom: 15px;
+    }
+    
+    .bot-message {
+      background: #ffda91;
+      padding: 12px 15px;
+      border-radius: 15px;
+      margin: 8px 0;
+      color: #333;
+      border: 2px solid #ffb347;
+      font-size: 16px;
+    }
+    
+    .user-message {
+      background: #90e0ef;
+      padding: 12px 15px;
+      border-radius: 15px;
+      margin: 8px 0;
+      text-align: right;
+      color: #000;
+      border: 2px solid #48cae4;
+      font-size: 16px;
+    }
+    
+    /* OPCIONES DE BOTONES */
+    .options-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    
+    .option-btn {
+      background: #4A90E2;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 15px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: all 0.3s;
+      font-family: 'Comic Sans MS', cursive;
+    }
+    
+    .option-btn:hover {
+      background: #357abd;
+      transform: scale(1.05);
+    }
+    
+    .option-btn:active {
+      transform: scale(0.95);
+    }
+    
+    /* INPUT PARA NOMBRE DEL PLANETA */
+    .name-input-container {
+      display: none;
+      gap: 10px;
+      margin-top: 15px;
+      align-items: center;
+    }
+    
+    .name-input {
+      flex: 1;
+      padding: 12px;
+      border-radius: 12px;
+      border: 3px solid #ffd27f;
+      font-size: 16px;
+      font-family: 'Comic Sans MS', cursive;
+    }
+    
+    .name-btn {
+      background: #51CF66;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    
+    .name-btn:hover {
+      background: #40A14D;
+    }
+    
+    /* TEACHER SECTION - CON NOMBRE LEONOR */
+    .teacher-section {
+      flex: 1;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 0;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      border: 3px solid #a78bfa;
+      display: flex;
+      flex-direction: column;
+      height: fit-content;
+    }
+    
+    .teacher-img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 17px 17px 0 0;
+      border-bottom: 4px solid #ffd27f;
+    }
+    
+    .teacher-info {
+      background: #ffda91;
+      padding: 15px;
+      border-radius: 0 0 15px 15px;
+      border: 2px solid #ffb347;
+      margin: 0;
+    }
+    
+    .teacher-name {
+      font-size: 1.3em;
+      color: #E64C3C;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    
+    /* CANVAS SECTION */
+    .canvas-section {
+      flex: 2;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      border: 3px solid #a78bfa;
+    }
+    
+    #planet-canvas {
+      border: 4px solid #ffd27f;
+      border-radius: 50%;
+      background: #0f172a;
+      margin: 15px 0;
+    }
+    
+    .planet-result {
+      margin: 15px 0;
+      font-size: 1.4em;
+      color: #333;
+      font-weight: bold;
+      background: #ffda91;
+      padding: 10px;
+      border-radius: 10px;
+      border: 2px solid #ffb347;
+    }
+    
+    .planet-name {
+      font-size: 1.6em;
+      color: #E64C3C;
+      font-weight: bold;
+      margin: 10px 0;
+      text-transform: uppercase;
+    }
+    
+    .buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .buttons button {
+      margin: 5px;
+      background: #ff6f61;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    
+    .buttons button:hover {
+      background: #ff4a3a;
+    }
+    
+    /* FOOTER MEJORADO */
+    .simple-footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      border: 3px solid #a78bfa;
+    }
+    
+    .footer-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+    
+    .footer-btn {
+      background: #4A90E2;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.3s;
+    }
+    
+    .footer-btn:hover {
+      background: #357abd;
+    }
+    
+    .footer-btn.home {
+      background: #51CF66;
+    }
+    
+    .footer-btn.home:hover {
+      background: #40A14D;
+    }
+    
+    .footer-btn.kids {
+      background: #FFD93D;
+      color: #333;
+    }
+    
+    .footer-btn.kids:hover {
+      background: #E6C235;
+    }
+    
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .kids-container {
+        flex-direction: column;
+      }
+      
+      .teacher-section {
+        order: -1;
+        margin-bottom: 20px;
+      }
+      
+      .simple-header h1 {
+        font-size: 2rem;
+      }
+      
+      .options-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .teacher-img {
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+<body style="background: #ffb84d;">
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="kids-container">
+    <!-- Chat -->
+    <section class="chat-section">
+      <div id="chat-box" class="chat-box">
+        <div class="bot-message">👩‍🏫 ¡Hola explorador! Soy Leonor, tu profe espacial. Vamos a crear un planeta increíble juntos. ¿Listo para empezar?</div>
+      </div>
+      <div id="options-container" class="options-container">
+        <!-- Las opciones se generarán automáticamente aquí -->
+      </div>
+      <div id="name-input-container" class="name-input-container">
+        <input type="text" id="planet-name-input" class="name-input" placeholder="Escribe el nombre de tu planeta..." maxlength="20">
+        <button id="name-planet-btn" class="name-btn">✨ Nombrar</button>
+      </div>
+    </section>
+
+    <!-- Profesora LEONOR -->
+    <aside class="teacher-section">
+      <img src="assets/profesora.png" alt="Profe espacial Leonor" class="teacher-img" onerror="this.style.display='none'">
+      <div class="teacher-info">
+        <div class="teacher-name">👩‍🏫 Leonor</div>
+        <p>¡Tu profe espacial favorita! Te ayudo a crear el planeta más increíble de la galaxia.</p>
+      </div>
+    </aside>
+
+    <!-- Lienzo -->
+    <section class="canvas-section">
+      <h3>🎨 Tu Planeta</h3>
+      <canvas id="planet-canvas" width="300" height="300"></canvas>
+      <div id="planet-name" class="planet-name"></div>
+      <div id="planet-result" class="planet-result">Tu planeta aparecerá aquí...</div>
+      <div class="buttons">
+        <button id="restart-btn">✨ Crear otro planeta</button>
+        <button id="print-btn">🖨️ Imprimir mi planeta</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER MEJORADO -->
+  <footer class="simple-footer">
+  <p>© 2025 TerraBeyond - Explorando juntos el universo</p>
+  <div class="footer-buttons">
+    <a href="index.html" class="footer-btn home">🏠 Volver al Inicio</a>
+    <a href="kids.html" class="footer-btn kids">🧒 Volver a TerraBeyond Kids</a>
+  </div>
+</footer>
+
+  <script>
+    const chatBox = document.getElementById("chat-box");
+    const optionsContainer = document.getElementById("options-container");
+    const nameInputContainer = document.getElementById("name-input-container");
+    const planetNameInput = document.getElementById("planet-name-input");
+    const namePlanetBtn = document.getElementById("name-planet-btn");
+    const planetNameDisplay = document.getElementById("planet-name");
+    const canvas = document.getElementById("planet-canvas");
+    const ctx = canvas.getContext("2d");
+    const resultBox = document.getElementById("planet-result");
+
+    const restartBtn = document.getElementById("restart-btn");
+    const printBtn = document.getElementById("print-btn");
+
+    // PREGUNTAS CON OPCIONES CERRADAS
+    const questions = [
+      {
+        question: "¿De qué tamaño es tu planeta?",
+        options: ["Pequeño 🪐", "Mediano 🌍", "Gigante 🌕"]
+    },
+      {
+        question: "¿Qué color predomina en su superficie?",
+        options: ["Azul 🌊", "Rojo 🔴", "Verde 🌿", "Amarillo 🌞", "Morado 💜", "Naranja 🍊"]
+      },
+      {
+        question: "¿Cuánta agua tiene tu planeta?",
+        options: ["Poca agua 🏜️", "Algo de agua 💧", "Mucha agua 🌊", "Solo hielo 🧊"]
+      },
+      {
+        question: "¿De qué está hecha su atmósfera?",
+        options: ["Oxígeno 💨", "Metano 🔥", "Dióxido de carbono ☁️", "Hidrógeno ⚡"]
+      },
+      {
+        question: "¿Cuántas lunas tiene?",
+        options: ["0 lunas", "1 luna 🌙", "2 lunas 🌙🌙", "3+ lunas 🌙🌙🌙"]
+      },
+      {
+        question: "¿Cuántos soles lo iluminan?",
+        options: ["1 sol ☀️", "2 soles ☀️☀️", "3 soles ☀️☀️☀️"]
+      }
+    ];
+
+    let currentQuestion = 0;
+    let answers = {};
+    let planetName = "";
+    let isUniquePlanet = false;
+
+    function addMessage(msg, sender="bot") {
+      const div = document.createElement("div");
+      div.className = sender === "bot" ? "bot-message" : "user-message";
+      div.innerText = msg;
+      chatBox.appendChild(div);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function showOptions() {
+      optionsContainer.innerHTML = '';
+      nameInputContainer.style.display = 'none';
+      
+      if (currentQuestion < questions.length) {
+        const currentQ = questions[currentQuestion];
+        
+        // Mostrar pregunta
+        addMessage(currentQ.question);
+        
+        // Mostrar opciones como botones
+        currentQ.options.forEach(option => {
+          const button = document.createElement("button");
+          button.className = "option-btn";
+          button.innerText = option;
+          button.addEventListener("click", () => {
+            selectOption(option);
+          });
+          optionsContainer.appendChild(button);
+        });
+      } else {
+        // Todas las preguntas respondidas
+        showPlanetResult();
+      }
+    }
+
+    function selectOption(selectedOption) {
+      // Guardar respuesta
+      const answerKey = ['size', 'color', 'water', 'atmosphere', 'moons', 'suns'][currentQuestion];
+      answers[answerKey] = selectedOption.toLowerCase();
+      
+      // Mostrar respuesta del usuario
+      addMessage(selectedOption, "user");
+      
+      // Siguiente pregunta
+      currentQuestion++;
+      
+      // Pequeña pausa antes de mostrar siguiente pregunta
+      setTimeout(() => {
+        showOptions();
+      }, 800);
+    }
+
+    function showPlanetResult() {
+      addMessage("🎉 ¡Excelente! Ahora voy a crear tu planeta...");
+      
+      setTimeout(() => {
+        drawPlanet();
+        classifyPlanet();
+        
+        if (isUniquePlanet) {
+          // Si el planeta es único, pedir nombre
+          setTimeout(() => {
+            addMessage("🌟 ¡Tu planeta es tan especial que merece un nombre único! ¿Cómo quieres llamarlo?");
+            nameInputContainer.style.display = 'flex';
+            planetNameInput.focus();
+          }, 1000);
+        } else {
+          addMessage("✨ ¡Mira qué planeta tan increíble! ¿Quieres crear otro? Usa el botón 'Crear otro planeta'");
+        }
+      }, 1500);
+    }
+
+    function drawPlanet() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Tamaño basado en respuesta
+      let radius = 80; // mediano por defecto
+      if (answers.size?.includes("pequeño")) radius = 50;
+      if (answers.size?.includes("gigante")) radius = 120;
+
+      // Color basado en respuesta
+      let planetColor = "#4A90E2"; // azul por defecto
+      if (answers.color?.includes("rojo")) planetColor = "#FF6B6B";
+      if (answers.color?.includes("verde")) planetColor = "#51CF66";
+      if (answers.color?.includes("amarillo")) planetColor = "#FFD93D";
+      if (answers.color?.includes("morado")) planetColor = "#845EF7";
+      if (answers.color?.includes("naranja")) planetColor = "#FF922B";
+
+      // Planeta principal con gradiente
+      const gradient = ctx.createRadialGradient(100, 100, 10, 150, 150, radius);
+      gradient.addColorStop(0, planetColor);
+      gradient.addColorStop(1, darkenColor(planetColor, 0.3));
+
+      ctx.beginPath();
+      ctx.arc(150, 150, radius, 0, Math.PI * 2);
+      ctx.fillStyle = gradient;
+      ctx.fill();
+      ctx.closePath();
+
+      // Ojos caricaturescos
+      ctx.beginPath();
+      ctx.arc(140, 140, 12, 0, Math.PI * 2);
+      ctx.arc(160, 140, 12, 0, Math.PI * 2);
+      ctx.fillStyle = "white";
+      ctx.fill();
+      ctx.closePath();
+
+      ctx.beginPath();
+      ctx.arc(140, 140, 6, 0, Math.PI * 2);
+      ctx.arc(160, 140, 6, 0, Math.PI * 2);
+      ctx.fillStyle = "black";
+      ctx.fill();
+      ctx.closePath();
+
+      // Sonrisa
+      ctx.beginPath();
+      ctx.arc(150, 160, 20, 0.1, Math.PI - 0.1);
+      ctx.strokeStyle = "black";
+      ctx.lineWidth = 3;
+      ctx.stroke();
+      ctx.closePath();
+
+      // Lunas basadas en respuesta
+      let moons = 0;
+      if (answers.moons?.includes("1 luna")) moons = 1;
+      if (answers.moons?.includes("2 lunas")) moons = 2;
+      if (answers.moons?.includes("3+")) moons = 3;
+
+      for (let i=0; i<moons; i++) {
+        ctx.beginPath();
+        ctx.arc(150 + (radius+30) * Math.cos((i+1)*0.8), 150 + (radius+30) * Math.sin((i+1)*0.8), 8, 0, Math.PI*2);
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+        ctx.closePath();
+      }
+
+      // Escribir nombre del planeta en el canvas si existe
+      if (planetName) {
+        ctx.font = "bold 20px 'Comic Sans MS'";
+        ctx.fillStyle = "white";
+        ctx.textAlign = "center";
+        ctx.fillText(planetName, 150, 280);
+      }
+    }
+
+    function classifyPlanet() {
+      isUniquePlanet = false;
+      let msg = "¡Tu planeta es único en la galaxia! 🌟";
+      
+      if (answers.color?.includes("rojo") && answers.size?.includes("pequeño")) {
+        msg = "¡Tu planeta se parece a Marte! 🔴 Un mundo rocoso y misterioso";
+      } else if (answers.color?.includes("azul") && answers.water?.includes("mucha")) {
+        msg = "¡Tu planeta se parece a Neptuno! 🌊 Un gigante azul con tormentas increíbles";
+      } else if (answers.size?.includes("gigante") && answers.color?.includes("naranja")) {
+        msg = "¡Tu planeta se parece a Júpiter! 🌪️ El rey de los planetas";
+      } else if (answers.size?.includes("mediano") && answers.water?.includes("mucha")) {
+        msg = "¡Tu planeta se parece a Kepler-22b! 🌍 Podría tener océanos como la Tierra";
+      } else if (answers.color?.includes("verde")) {
+        msg = "¡Tu planeta podría estar lleno de vida vegetal! 🌿";
+      } else if (answers.water?.includes("hielo")) {
+        msg = "¡Un planeta helado como Europa! ❄️ Podría tener océanos bajo el hielo";
+      } else {
+        // Si no coincide con ningún planeta conocido, es único
+        isUniquePlanet = true;
+        msg = "¡Wow! Has creado un tipo de planeta completamente nuevo. ¡Es único en el universo! 🎉";
+      }
+      
+      resultBox.innerText = msg;
+    }
+
+    function namePlanet() {
+      const name = planetNameInput.value.trim();
+      if (name) {
+        planetName = name;
+        planetNameDisplay.textContent = `✨ ${planetName} ✨`;
+        addMessage(`✨ ¡Perfecto! Tu planeta se llamará "${planetName}"`, "user");
+        nameInputContainer.style.display = 'none';
+        planetNameInput.value = '';
+        
+        // Redibujar el planeta con el nombre
+        drawPlanet();
+        
+        setTimeout(() => {
+          addMessage(`👩‍🏫 Leonor: ¡Es un nombre maravilloso! "${planetName}" será recordado en toda la galaxia. ¿Quieres crear otro planeta?`);
+        }, 1000);
+      }
+    }
+
+    function darkenColor(color, factor) {
+      const hex = color.replace('#', '');
+      const num = parseInt(hex, 16);
+      const amt = Math.round(2.55 * factor * 100);
+      const R = (num >> 16) - amt;
+      const G = (num >> 8 & 0x00FF) - amt;
+      const B = (num & 0x0000FF) - amt;
+      return "#" + (0x1000000 + (R<255?R<1?0:R:255)*0x10000 + (G<255?G<1?0:G:255)*0x100 + (B<255?B<1?0:B:255)).toString(16).slice(1);
+    }
+
+    // Botón para nombrar planeta
+    namePlanetBtn.addEventListener("click", namePlanet);
+    planetNameInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        namePlanet();
+      }
+    });
+
+    // Botón reiniciar
+    restartBtn.addEventListener("click", () => {
+      currentQuestion = 0;
+      answers = {};
+      planetName = "";
+      isUniquePlanet = false;
+      chatBox.innerHTML = "";
+      optionsContainer.innerHTML = "";
+      nameInputContainer.style.display = 'none';
+      planetNameInput.value = '';
+      planetNameDisplay.textContent = '';
+      addMessage("👩‍🏫 Leonor: ¡Hola explorador! Vamos a crear un nuevo planeta. ¿Listo?");
+      setTimeout(() => {
+        showOptions();
+      }, 1000);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      resultBox.innerText = "Tu planeta aparecerá aquí...";
+    });
+
+    // Botón imprimir
+    printBtn.addEventListener("click", () => {
+      window.print();
+    });
+
+    // Iniciar la conversación
+    setTimeout(() => {
+      showOptions();
+    }, 1000);
+  </script>
+</body>
+</html>

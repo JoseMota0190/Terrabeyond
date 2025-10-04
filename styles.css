@@ -15,8 +15,8 @@
     --card-shadow-color: rgba(0, 0, 0, 0.5); /* Color base para las sombras de tarjetas */
 
     /* Tamaños de fuente para la navegación */
-    --nav-link-font-size: 1.15rem; /* Tamaño de los enlaces del nav */
-    --nav-logo-font-size: 1.8rem;  /* Tamaño del logo en el nav */
+    --nav-link-font-size: 1.4rem; /* Tamaño de los enlaces del nav */
+    --nav-logo-font-size: 1.4rem;  /* Tamaño del logo en el nav */
 }
 
 
@@ -24,15 +24,12 @@
 /* RESET & BASE             */
 /* ===================================== */
 body {
-    margin: 0; /* Elimina el margen predeterminado del body */
-    font-family: 'Poppins', sans-serif; /* Fuente principal del proyecto */
-
-    /* Fondo de la página: gradiente oscuro sobre una imagen espacial */
+    margin: 0; 
+    font-family: 'Public Sans Web', sans-serif; 
     background: 
         linear-gradient(rgba(11, 15, 26, 0.9), rgba(11, 15, 26, 0.9)), 
         url('./assets/fondo-index.jpg') no-repeat center center fixed; 
     background-size: cover; 
-    
     color: var(--text); 
     padding-top: 0px; 
     line-height: 1.6; 
@@ -46,74 +43,68 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background: rgba(0, 0, 0, 0.7); /* Fondo semitransparente elegante */
-    backdrop-filter: blur(6px); /* efecto de vidrio */
-    position: sticky;
+    background-color: #003366; 
+    position: fixed; 
     top: 0;
     z-index: 1000;
     box-sizing: border-box;
     width: 100%;
 }
 
-/* Logo contenedor (favicon + texto) */
 .logo-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+}
+
+.logo-link {
+    text-decoration: none; /* Quita el subrayado del enlace del logo */
 }
 
 .logo-container img {
-    width: 32px;
-    height: 32px;
-    border-radius: 6px; /* esquinas suaves para favicon */
+    height: 40px;
+    width: auto;
 }
 
 .logo-container .logo-text {
-    font-size: 1.4rem;
+    /* Letras Blancas */
+    color: #FFFFFF; 
+    font-size: 2.2rem;
     font-weight: bold;
-    color: var(--text);
     letter-spacing: 1px;
     text-decoration: none;
 }
 
-.logo-link {
-    text-decoration: none;  /* Quita el subrayado */
-    color: inherit;         /* Mantiene el color del texto */
-    display: inline-block;  /* Permite transformaciones */
-}
-
-.logo-link:hover {
-    transform: scale(1.05); /* Efecto hover */
-    transition: transform 0.2s ease;
-}
-
-/* Mantén tu .logo-container actual */
-.logo-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-
-/* Links de navegación */
-.nav-links {
-    display: flex;
-    gap: 1.5rem;
-    align-items: center;
-}
-
 .nav-links a {
-    color: var(--text);
+    color: #FFFFFF; 
     text-decoration: none;
     font-weight: 500;
     font-size: var(--nav-link-font-size);
-    padding: 0.5rem 0;
-    transition: color 0.3s ease, border-bottom 0.3s ease;
+    
+    /* MODIFICACIÓN: Añadimos más margen a la derecha para separarlos */
+    margin-right: 1.5rem; 
+
+    /* Diseño de Caja */
+    padding: 0.5rem 1rem;
+    
+    /* CAMBIO DE CONTRASTE: Usamos borde blanco puro */
+    border: 2px solid #FFFFFF; 
+    border-radius: 8px; 
+
+    transition: all 0.3s ease;
 }
 
+/* Ajuste del último enlace para que no tenga margen extra */
+.nav-links a:last-child {
+    margin-right: 0;
+}
+
+/* Mejora del Contraste en Hover */
 .nav-links a:hover {
-    color: var(--accent-general);
-    border-bottom: 2px solid var(--accent-general);
+    /* CAMBIO: Fondo azul claro para el hover */
+    background-color: #4A90E2; 
+    border-color: #4A90E2;
+    color: #FFFFFF;
 }
 
 /* ===================================== */
@@ -148,9 +139,7 @@ body {
         border-bottom: none;
     }
 
-    .logo-container .logo-text {
-        font-size: 1.2rem;
-    }
+    
 }
 
 /* ===================================== */
@@ -314,58 +303,62 @@ footer a:hover {
 }
 
 
+/* ------------------------------------------- */
+/* ESTILOS ESPECÍFICOS PARA LA PÁGINA 'KIDS'   */
+/* ------------------------------------------- */
 
-/* ===================================== */
-/* Seccion Kids        */
-/* ===================================== */
-
-/* Hero para pequeños astronautas */
-.hero-kids {
-  background: linear-gradient(to bottom, #0b0f1a, #1a1f3c);
-  color: white;
-  text-align: center;
-  padding: 5rem 2rem;
+.kids-page-body {
+    background-color: #B5EAD7;
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+    padding-top: 5rem;
 }
 
-.hero-kids h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+.kids-main-title {
+    font-size: 2rem;
+    color: #4A90E2;
+    text-align: center;
+    padding: 2rem 1rem 1rem;
+    margin-bottom: 1rem;
 }
 
-.hero-kids p {
-  font-size: 1.2rem;
-  opacity: 0.8;
+.kids-page-body .cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+    padding: 3rem 2rem;
 }
 
-/* Cards container */
-.cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
-  padding: 3rem 2rem;
+.kids-page-body .card {
+    background: #ffb84d;
+    color: #333;
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    width: 320px;
+    border: 5px solid #4A90E2;
+    box-shadow: 0px 8px 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: none;
 }
 
-/* Cada card */
-.card {
-  background: #14182b;
-  color: white;
-  border-radius: 15px;
-  padding: 1.5rem;
-  text-align: center;
-  width: 300px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.kids-page-body .card:hover {
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0px 15px 30px rgba(0,0,0,0.3);
 }
 
-.card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0px 10px 20px rgba(0,0,0,0.6);
+.kids-page-body .card-img {
+    width: 100%;
+    max-width: 250px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1.5rem;
+    height: auto;
+    object-fit: contain;
+    border-radius: 50%;
+    border: 6px solid white;
 }
 
-/* Imagen dentro de cada card */
-.card-img {
-  width: 120px;
-  height: 120px;
-  object-fit: contain;
-  margin-bottom: 1rem;
-}
+
