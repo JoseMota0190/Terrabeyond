@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TerraBeyond</title>
+  <link rel="icon" href="../../assets/images/favicon.png">
+  <link rel="stylesheet" href="../../css/styles.css" />
+  <style>
+    /* === Estilo especial de la historia de Milo === */
+    body {
+      background: linear-gradient(135deg, #ffb84d 0%, #ff922b 100%);
+      color: #3b2f1e;
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    main#historia-milo {
+      text-align: center;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .kids-main-title {
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: #3b2f1e;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 4px rgba(255,255,255,0.5);
+    }
+
+    .story-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+      margin: 0 auto;
+      max-width: 800px;
+      max-height: 500px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 25px;
+      padding: 30px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      border: 4px solid #ffd27f;
+    }
+
+    .story-image {
+      width: 100%;
+      max-width: 600px;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      transition: transform 0.4s ease;
+      border: 3px solid #ffb347;
+    }
+
+    .story-image:hover {
+      transform: scale(1.03);
+    }
+
+    .story-text {
+      font-size: 1.2rem;
+      line-height: 1.7;
+      color: #2f240f;
+      padding: 0 15px;
+      background: #ffda91;
+      border-radius: 15px;
+      padding: 20px;
+      border: 2px solid #ffb347;
+      font-family: 'Comic Sans MS', cursive;
+    }
+
+    .story-buttons {
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .story-buttons button {
+      background: linear-gradient(135deg, #4A90E2 0%, #357abd 100%);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 15px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: bold;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .story-buttons button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    .story-buttons button:active {
+      transform: translateY(-1px);
+    }
+
+    .end-buttons {
+      margin-top: 30px;
+      display: none;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .end-buttons button, .footer-btn {
+      background: linear-gradient(135deg, #51CF66 0%, #40A14D 100%);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 15px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .end-buttons button:hover, .footer-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    .footer-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .footer-btn.home {
+      background: linear-gradient(135deg, #4A90E2 0%, #357abd 100%);
+    }
+
+    .footer-btn.kids {
+      background: linear-gradient(135deg, #FFD93D 0%, #E6C235 100%);
+      color: #333;
+    }
+
+    /* Indicador de progreso */
+    .progress-bar {
+      width: 100%;
+      max-width: 600px;
+      height: 8px;
+      background: #e0e0e0;
+      border-radius: 10px;
+      margin: 20px auto;
+      overflow: hidden;
+    }
+
+    .progress {
+      height: 100%;
+      background: linear-gradient(90deg, #4A90E2, #51CF66);
+      border-radius: 10px;
+      transition: width 0.3s ease;
+      width: 0%;
+    }
+
+    /* Contador de páginas */
+    .page-counter {
+      font-size: 1rem;
+      color: #666;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .story-container {
+        padding: 20px;
+        margin: 0 10px;
+      }
+      
+      .story-image {
+        height: 250px;
+      }
+      
+      .story-text {
+        font-size: 1.1rem;
+        padding: 15px;
+      }
+      
+      .kids-main-title {
+        font-size: 1.8rem;
+      }
+      
+      .story-buttons, .end-buttons, .footer-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .story-buttons button, .end-buttons button, .footer-btn {
+        width: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <main id="historia-milo">
+    <h1 class="kids-main-title">🚀 La Aventura Espacial del Capitán Milo</h1>
+    
+    <div class="progress-bar">
+      <div class="progress" id="progress"></div>
+    </div>
+    
+    <div class="story-container">
+      <img id="milo-img" src="../../assets/images/milo1.png" alt="Capitán Milo" class="story-image">
+      <p id="story-text" class="story-text">
+        En un rincón del universo, vivía el pequeño Capitán Milo, un gatito astronauta curioso que soñaba con encontrar un planeta lleno de vida.
+      </p>
+    </div>
+
+    <div class="page-counter" id="page-counter">Página 1 de 14</div>
+
+    <div class="story-buttons">
+      <button id="prev-btn">⬅️ Anterior</button>
+      <button id="next-btn">Siguiente ➡️</button>
+    </div>
+
+    <div class="end-buttons" id="end-buttons">
+      <button id="restart-btn">🔄 Volver a Empezar</button>
+    </div>
+
+    <!-- Footer consistente con las otras páginas -->
+    <footer class="footer-buttons">
+      <a href="../../index.html" class="footer-btn home">🏠 Volver al Inicio</a>
+      <a href="kids.html" class="footer-btn kids">🧒 Volver a Pequeños Astronautas</a>
+    </footer>
+  </main>
+
+  <script>
+    const historia = [
+      { img: "../../assets/images/milo1.png", text: "En un rincón del universo, vivía el pequeño Capitán Milo, un gatito astronauta curioso que soñaba con encontrar vida en otros planetas." },
+      { img: "../../assets/images/milo2.png", text: "A bordo de su nave 'Luna-1', Milo se preparó para un largo viaje entre las estrellas, dejando atrás su planeta natal." },
+      { img: "../../assets/images/milo3.png", text: "Pasó junto a cometas brillantes y nebulosas coloridas, saludando a cada una con un suave 'miau'." },
+      { img: "../../assets/images/milo4.png", text: "Su primera parada fue Luma-3, un planeta cubierto de océanos de mercurio. El cielo se llenaba de relámpagos de colores, todo era hermoso, pero también muy extraño…" },
+      { img: "../../assets/images/milo5.png", text: "El planeta brillaba, sí, pero estaba vacío y sin vida." },
+      { img: "../../assets/images/milo6.png", text: "Su siguiente destino fue Roca-X9, un planeta árido y cubierto de polvo." },
+      { img: "../../assets/images/milo7.png", text: "Al aterrizar, caminó entre rocas y grietas. Había huellas antiguas, como si alguna vez algo hubiera vivido allí." },
+      { img: "../../assets/images/milo8.png", text: "Pero todo estaba en silencio. De esa antigua civilización solo quedaban ruinas. Milo suspiró y murmuró: 'Tal vez en otro planeta…'" },
+      { img: "../../assets/images/milo9.png", text: "De vuelta en su nave, Milo miró las estrellas. Recordó los datos del telescopio James Webb sobre un planeta llamado K2-18b" },
+      { img: "../../assets/images/milo10.png", text: "Con una sonrisa, ajustó los controles: '¡Allá vamos!'" },
+      { img: "../../assets/images/milo11.png", text: "Milo aterrizó suavemente sobre un valle verde. Cada paso despertaba pequeñas luces en el agua, como si el planeta mismo lo saludara." },
+      { img: "../../assets/images/milo12.png", text: "Eran hadas de luz, diminutas y brillantes, que se acercaban curiosas al ver al gatito astronauta. Milo sonrió y levantó su patita para saludarlas." },
+      { img: "../../assets/images/milo13.png", text: "Las hadas comenzaron a danzar a su alrededor, dejando destellos en el aire. Milo reía, fascinado. ¡Había encontrado vida!" },
+      { img: "../../assets/images/milo14.png", text: "Milo se despidio de K2-18b y prosiguio con su viaje. Esto era solo el comienzo, nos quedan muchos mundos más por descubrir pequeños astronautas." },
+    ];
+  
+    let current = 0;
+    const img = document.getElementById("milo-img");
+    const text = document.getElementById("story-text");
+    const nextBtn = document.getElementById("next-btn");
+    const prevBtn = document.getElementById("prev-btn");
+    const endButtons = document.getElementById("end-buttons");
+    const progress = document.getElementById("progress");
+    const pageCounter = document.getElementById("page-counter");
+
+    function updateStory() {
+      img.src = historia[current].img;
+      text.textContent = historia[current].text;
+      
+      // Actualizar progreso
+      const progressPercent = ((current + 1) / historia.length) * 100;
+      progress.style.width = `${progressPercent}%`;
+      
+      // Actualizar contador
+      pageCounter.textContent = `Página ${current + 1} de ${historia.length}`;
+      
+      // Manejar estado de botones
+      prevBtn.style.display = current === 0 ? 'none' : 'inline-block';
+      
+      if (current === historia.length - 1) {
+        nextBtn.style.display = 'none';
+        endButtons.style.display = 'flex';
+      } else {
+        nextBtn.style.display = 'inline-block';
+        endButtons.style.display = 'none';
+      }
+    }
+
+    nextBtn.addEventListener("click", () => {
+      if (current < historia.length - 1) {
+        current++;
+        updateStory();
+      }
+    });
+
+    prevBtn.addEventListener("click", () => {
+      if (current > 0) {
+        current--;
+        updateStory();
+      }
+    });
+
+    document.getElementById("restart-btn").addEventListener("click", () => {
+      current = 0;
+      updateStory();
+    });
+
+    document.getElementById("astronautas-btn").addEventListener("click", () => {
+      window.location.href = "kids.html";
+    });
+
+    // Inicializar
+    updateStory();
+
+    // Manejar errores de imagen
+    img.onerror = function() {
+      this.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="350" viewBox="0 0 600 350"><rect width="600" height="350" fill="%23ffda91"/><text x="300" y="175" font-family="Arial" font-size="20" text-anchor="middle" fill="%23333">Imagen no encontrada</text></svg>';
+    };
+  </script>
+</body>
+</html>

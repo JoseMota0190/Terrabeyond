@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TerraBeyond</title>
+  <link rel="icon" href="../../../assets/images/favicon.png">
+  <link rel="stylesheet" href="css/timeline.css" />
+</head>
+<body>
+  <!-- Barra de navegación (copiada de index.html) -->
+  <nav class="navbar">
+    <a href="../../../index.html" class="logo-link">
+      <div class="logo-container">
+        <img src="../../../assets/images/favicon.png" alt="TerraBeyond Logo" class="logo">
+        <span class="logo-text">TerraBeyond</span>
+      </div>
+    </a>
+     
+    <div class="nav-links">
+      <a href="../../academico/academico.html" class="nav-button lab-button">
+        <span class="nav-icon">🔬</span>
+        <span class="nav-text">Laboratorio</span>
+      </a>
+      <a href="../../general/general.html" class="nav-button explore-button">
+        <span class="nav-icon">🪐</span>
+        <span class="nav-text">Exploración</span>
+      </a>
+      <a href="../../kids/kids.html" class="nav-button kids-button">
+        <span class="nav-icon">🚀</span>
+        <span class="nav-text">Pequeños Astronautas</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Canvas para estrellas -->
+  <canvas id="stars"></canvas>
+
+  <!-- Contenido principal -->
+  <main class="timeline-container">
+    <h1 class="timeline-title">La Búsqueda de Vida Más Allá de la Tierra</h1>
+    <h2 class="timeline-subtitle">Un viaje a través del tiempo y el espacio</h2>
+
+    <section class="timeline">
+      <div class="timeline-line"></div>
+
+      <!-- Antigüedad y mitos -->
+      <div class="timeline-event">
+        <div class="timeline-connector">
+          <div class="timeline-dot"></div>
+          <div class="timeline-arrow"></div>
+        </div>
+        <div class="timeline-content">
+          <h2>Antigüedad — Mitos y civilizaciones estelares</h2>
+          <div class="event-media myth-media">
+            <!-- jeroglíficos animados (CSS) -->
+            <div class="glyphs">𓂀 𓀀 𓃰 𓁹</div>
+          </div>
+          <p>Culturas antiguas imaginaron dioses y visitantes venidos desde las estrellas; eran solo mitos pero inspiraron la curiosidad por la vida fuera de la Tierra.</p>
+          <p class="small"><img src="../../../assets/images/jeroglificos.jpg"</p>
+        </div>
+      </div>
+
+      <!-- Primeras observaciones -->
+      <div class="timeline-event">
+        <div class="timeline-connector">
+          <div class="timeline-dot"></div>
+          <div class="timeline-arrow"></div>
+        </div>
+        <div class="timeline-content">
+          <h2>Siglo XVII — Primeras observaciones astronómicas</h2>
+          <div class="event-media telescope-media">
+            <div class="telescope">🔭</div>
+          </div>
+          <p>Galileo, Kepler y otros apuntaron con telescopios hacia el cielo por primera vez; la idea de que podia existir más mundos como la Tierra comenzó a tomar forma científica.</p>
+          <p class="small"><img src="../../../assets/images/galileo.png"</p>
+        </div>
+      </div>
+
+      <!-- Era espacial -->
+      <div class="timeline-event">
+        <div class="timeline-connector">
+          <div class="timeline-dot"></div>
+          <div class="timeline-arrow"></div>
+        </div>
+        <div class="timeline-content">
+          <h2>Siglo XX — La era espacial</h2>
+          <div class="event-media rocket-media">
+            <div class="rocket">🚀</div>
+            <div class="antenna">📡</div>
+          </div>
+          <p>El surgimiento de radiotelescopios y proyectos como SETI marcaron el inicio de una búsqueda sistemática de señales inteligentes.</p>
+          <p class="small"><img src="../../../assets/images/seti.jpg"</p>
+        </div>
+      </div>
+
+      <!-- Carl Sagan -->
+      <div class="timeline-event">
+        <div class="timeline-connector">
+          <div class="timeline-dot"></div>
+          <div class="timeline-arrow"></div>
+        </div>
+        <div class="timeline-content">
+          <h2>1970s - 1990s — Carl Sagan y la divulgación del cosmos</h2>
+          <p class="small"><img src="../../../assets/images/sagan.jpeg"</p>
+          <p>El astrónomo Carl Sagan transformó la ciencia en poesía. Desde el proyecto Voyager hasta la serie “Cosmos”, promovió la idea de que la humanidad es polvo de estrellas buscando sus orígenes.</p>
+          </div>
+      </div>
+
+      <!-- Kepler -->
+      <div class="timeline-event">
+        <div class="timeline-connector">
+          <div class="timeline-dot"></div>
+          <div class="timeline-arrow"></div>
+        </div>
+        <div class="timeline-content">
+          <h2>2009 - 2018 — Misión Kepler</h2>
+          <p class="small"><img src="../../../assets/images/kepler.jpg"</p>
+          <p>El 8 de abril de 2009, la nave espacial Kepler tomó su primera instantánea del campo de diamantes en el cielo que estudiaría durante los próximos cuatro años. El telescopio Kepler descubrió más de 2.600 exoplanetas confirmados. Su legado permitió crear el dataset “Kepler Objects of Interest (KOI)”.</p>
+        </div>
+      </div>
+
+      <!-- K2 -->
+      <div class="timeline-event">
+        <div class="timeline-connector">
+          <div class="timeline-dot"></div>
+          <div class="timeline-arrow"></div>
+        </div>
+        <div class="timeline-content">
+          <h2>2014 - 2018 — Misión K2</h2>
+          <p class="small"><img src="../../../assets/images/k2.jpg"</p>
+          <p>Tras un fallo técnico, Kepler renació como K2, observando diferentes regiones del cielo y sumando más exoplanetas al catálogo cósmico.</p>
+        </div>
+      </div>
+        
+      <!-- TESS -->
+      <div class="timeline-event">
+        <div class="timeline-connector">
+          <div class="timeline-dot"></div>
+          <div class="timeline-arrow"></div>
+        </div>
+        <div class="timeline-content">
+          <h2>2018 - Presente — TESS</h2>
+          <p class="small"><img src="../../../assets/images/TESS.png"</p>
+          <p>TESS continúa la búsqueda, identificando miles de planetas potencialmente habitables y expandiendo el catálogo TOI (TESS Objects of Interest).</p>
+        </div>
+      </div>
+
+      <!-- JWST -->
+      <div class="timeline-event">
+        <div class="timeline-connector">
+          <div class="timeline-dot"></div>
+          <div class="timeline-arrow"></div>
+        </div>
+        <div class="timeline-content">
+          <h2>2022 - Presente — James Webb Space Telescope (JWST)</h2>
+          <p class="small"><img src="../../../assets/images/jwst.jpg"</p>
+          <p>El JWST observa el universo en infrarrojo, permitiendo analizar atmósferas exoplanetarias y detectar indicios químicos compatibles con vida.</p>
+        </div>
+      </div>
+
+      <!-- NEOSSat -->
+      <div class="timeline-event">
+        <div class="timeline-connector">
+          <div class="timeline-dot"></div>
+          <div class="timeline-arrow"></div>
+        </div>
+        <div class="timeline-content">
+          <h2>Presente — NEOSSat</h2>
+          <p class="small"><img src="../../../assets/images/neos.jpeg"</p>
+          <p>El satélite canadiense NEOSSat detecta asteroides, basura espacial y exoplanetas cercanos, contribuyendo al conocimiento del entorno espacial próximo.</p>
+        </div>
+      
+
+    </section>
+
+    <section class="sagan-quote">
+      <p>“Somewhere, something incredible is waiting to be known.”</p>
+      <span>— Carl Sagan</span>
+    </section>
+  </main>
+
+  <!-- Footer legal -->
+  <footer class="timeline-footer">
+    <p>© 2025 Jose Antonio Mota — Inspirado por la exploración del cosmos</p>
+  </footer>
+
+  <script src="js/timeline.js"></script>
+</body>
+</html>

@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TerraBeyond | Pequeños Astronautas</title>
+  <title>TerraBeyond</title>
+  <link rel="icon" href="../../assets/images/favicon.png">
   <style>
     body {
       background-color: #ffb347;
@@ -40,8 +41,8 @@
     }
 
     .teacher-img {
-      width: 180px;
-      height: 180px;
+      width: 200px;
+      height: 200px;
       border-radius: 50%;
       border: 4px solid #e07b00;
       object-fit: cover;
@@ -69,11 +70,17 @@
     }
 
     .story-text {
-      font-size: 1.25em;
-      line-height: 1.6;
-      min-height: 160px;
-      margin-top: 15px;
+      font-size: 1.2em;
+      line-height: 1.5;
+      min-height: 100px;  
+      max-height: 120px;  
+      margin: 10px 0;
       color: #333;
+      padding: 15px;
+      background: #fff9e6;
+      border-radius: 10px;
+      border: 2px solid #ffd166;
+      overflow-y: auto;   
     }
 
     .quiz-question {
@@ -109,34 +116,77 @@
       color: #a05200;
     }
 
-    .fade-out {
-      animation: fadeOut 2s forwards;
+    .nav-buttons {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      background-color: aqua;
     }
 
-    @keyframes fadeOut {
-      to { opacity: 0; transform: scale(0.9); }
-    }
-
-    .btn {
+    .nav-btn {
       background: #ff9500;
       color: white;
       border: none;
       border-radius: 10px;
-      padding: 10px 20px;
+      padding: 12px 20px;
       cursor: pointer;
       font-weight: bold;
       font-size: 1em;
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.2s;
+      flex: 1;
     }
 
-    .btn:hover {
+    .nav-btn:hover {
       background: #e07b00;
+      transform: translateY(-2px);
+    }
+
+    .nav-btn:disabled {
+      background: #cccccc;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn {
+    background: #4A90E2;  /* 🔼 CAMBIADO A AZUL */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1em;
+    transition: background 0.3s, transform 0.2s;
+    margin: 5px;
+}
+
+.btn:hover {
+    background: #357ABD;  /* 🔼 AZUL MÁS OSCURO AL HOVER */
+    transform: translateY(-2px);
+}
+
+    /* BOTONES GLOBALES SIEMPRE VISIBLES */
+    .global-nav-buttons {
+      margin-top: 25px;
+      padding-top: 15px;
+      border-top: 2px dashed #ff9500;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
     footer {
       margin-top: 25px;
       font-size: 1em;
       color: #5c3d00;
+    }
+
+    .story-progress {
+      margin-top: 10px;
+      font-size: 0.9em;
+      color: #a05200;
     }
   </style>
 </head>
@@ -149,18 +199,36 @@
 
   <!-- MENU -->
   <div id="menu-box">
-    <img src="assets/profe.png" alt="Profesor Albert Sagan" class="teacher-img" onerror="this.style.display='none'">
+    <img src="../../assets/images/profe.png" alt="Profesor Albert Sagan" class="teacher-img" onerror="this.style.display='none'">
     <h2>¡Hola, pequeño astronauta! 🌌</h2>
     <p>¿Sobre qué te gustaría aprender hoy?</p>
     <button class="menu-option" onclick="startStory('planetas')">🪐 Planetas</button>
     <button class="menu-option" onclick="startStory('estrellas')">✨ Estrellas</button>
     <button class="menu-option" onclick="startStory('agujeros')">🌀 Agujeros Negros</button>
+    
+    <!-- BOTONES GLOBALES -->
+    <div class="global-nav-buttons">
+      <button class="btn" onclick="window.location.href='../../index.html'">🏠 Inicio</button>
+      <button class="btn" onclick="window.location.href='kids.html'">👩‍🚀 Pequeños Astronautas</button>
+    </div>
   </div>
 
   <!-- HISTORIA -->
   <div id="story-box" style="display:none;">
-    <img src="assets/profe.png" alt="Profesor Albert Sagan" class="teacher-img" onerror="this.style.display='none'">
+    <img src="../../assets/images/profe.png" alt="Profesor Albert Sagan" class="teacher-img" onerror="this.style.display='none'">
     <div id="story" class="story-text"></div>
+    <div class="story-progress" id="storyProgress"></div>
+    <div class="nav-buttons">
+      <button class="nav-btn" id="prevBtn" onclick="previousStory()" disabled>← Anterior</button>
+      <button class="nav-btn" id="nextBtn" onclick="nextStory()">Siguiente →</button>
+    </div>
+    
+    <!-- BOTONES GLOBALES -->
+    <div class="global-nav-buttons">
+      <button class="btn" onclick="window.location.href='../../index.html'">🏠 Inicio</button>
+      <button class="btn" onclick="window.location.href='kids.html'">👩‍🚀 Pequeños Astronautas</button>
+      <button class="btn" onclick="showMenu()">📚 Otro Tema</button>
+    </div>
   </div>
 
   <!-- QUIZ -->
@@ -169,10 +237,13 @@
     <div id="question" class="quiz-question"></div>
     <div id="options"></div>
     <div id="result"></div>
-    <!-- 🔘 Botones de navegación al final del quiz -->
-    <button id="restart-btn" class="btn" style="display:none;">🔄 Volver al inicio</button>
-    <button id="astronautas-btn" class="btn" style="display:none;">👩‍🚀 Ir a Pequeños Astronautas</button>
-    <button id="otroquiz-btn" class="btn" style="display:none;">🧠 Elegir otro quiz</button>
+    
+    <!-- BOTONES GLOBALES -->
+    <div class="global-nav-buttons">
+      <button class="btn" onclick="window.location.href='../../index.html'">🏠 Inicio</button>
+      <button class="btn" onclick="window.location.href='kids.html'">👩‍🚀 Pequeños astronautas</button>
+      <button class="btn" onclick="showMenu()">📚 Otro Quiz</button>
+    </div>
   </div>
 
   <footer>© 2025 TerraBeyond Kids — Aprender es una aventura sin fin 🌠</footer>
@@ -197,7 +268,7 @@
       ],
       agujeros: [
         "🌀 ¡Valiente elección! Los agujeros negros son uno de los misterios más grandes del universo.",
-        "Se forman cuando una estrella gigante explota y colapsa sobre sí misma, creando una fuerza de gravedad tan poderosa que ni la luz puede escapar. 🌌",
+        "Se forman cuando una estrella gigante exploca y colapsa sobre sí misma, creando una fuerza de gravedad tan poderosa que ni la luz puede escapar. 🌌",
         "No los podemos ver directamente, pero sí notar cómo afectan a las estrellas y planetas que los rodean.",
         "Algunos son pequeños, otros pueden tragarse millones de soles enteros. 😮",
         "¡Ahora pongamos a prueba tu conocimiento sobre estos gigantes invisibles!"
@@ -224,46 +295,59 @@
 
     const storyBox = document.getElementById("story-box");
     const storyEl = document.getElementById("story");
+    const storyProgress = document.getElementById("storyProgress");
     const menuBox = document.getElementById("menu-box");
     const quizBox = document.getElementById("quiz-box");
     const questionEl = document.getElementById("question");
     const optionsEl = document.getElementById("options");
     const resultEl = document.getElementById("result");
-    const restartBtn = document.getElementById("restart-btn");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
 
+    let currentStory = [];
     let currentQuiz = [];
-    let score = 0, index = 0, topic = "";
+    let storyIndex = 0;
+    let score = 0, quizIndex = 0, topic = "";
+
+    function showMenu() {
+      storyBox.style.display = "none";
+      quizBox.style.display = "none";
+      menuBox.style.display = "block";
+    }
 
     function startStory(selected) {
       topic = selected;
       menuBox.style.display = "none";
       storyBox.style.display = "block";
-      storyEl.innerHTML = "";
-      playStory(0);
+      currentStory = stories[topic];
+      storyIndex = 0;
+      showStoryPage();
     }
 
-    function typeWriter(text, i, callback) {
-      if (i < text.length) {
-        storyEl.innerHTML = text.substring(0, i + 1);
-        setTimeout(() => typeWriter(text, i + 1, callback), 70); // más lento
-      } else if (callback) {
-        setTimeout(callback, 2500);
+    function showStoryPage() {
+      storyEl.textContent = currentStory[storyIndex];
+      storyProgress.textContent = `${storyIndex + 1} / ${currentStory.length}`;
+      
+      // Actualizar botones
+      prevBtn.disabled = storyIndex === 0;
+      nextBtn.textContent = storyIndex === currentStory.length - 1 ? "Comenzar Quiz →" : "Siguiente →";
+    }
+
+    function previousStory() {
+      if (storyIndex > 0) {
+        storyIndex--;
+        showStoryPage();
       }
     }
 
-    function playStory(i) {
-      const story = stories[topic];
-      if (i < story.length) {
-        storyEl.innerHTML = "";
-        typeWriter(story[i], 0, () => playStory(i + 1));
+    function nextStory() {
+      if (storyIndex < currentStory.length - 1) {
+        storyIndex++;
+        showStoryPage();
       } else {
-        setTimeout(() => {
-          storyBox.classList.add("fade-out");
-          setTimeout(() => {
-            storyBox.style.display = "none";
-            startQuiz(topic);
-          }, 2000);
-        }, 1000);
+        // Terminó la historia, comenzar quiz
+        storyBox.style.display = "none";
+        startQuiz(topic);
       }
     }
 
@@ -271,12 +355,12 @@
       quizBox.style.display = "block";
       currentQuiz = quizzes[topic];
       score = 0;
-      index = 0;
+      quizIndex = 0;
       loadQuestion();
     }
 
     function loadQuestion() {
-      const q = currentQuiz[index];
+      const q = currentQuiz[quizIndex];
       questionEl.textContent = q.q;
       optionsEl.innerHTML = "";
       resultEl.textContent = "";
@@ -290,7 +374,7 @@
     }
 
     function checkAnswer(i) {
-      const q = currentQuiz[index];
+      const q = currentQuiz[quizIndex];
       if (i === q.a) {
         resultEl.textContent = "✅ ¡Correcto!";
         score++;
@@ -298,8 +382,8 @@
         resultEl.textContent = "❌ No exactamente...";
       }
 
-      index++;
-      if (index < currentQuiz.length) {
+      quizIndex++;
+      if (quizIndex < currentQuiz.length) {
         setTimeout(loadQuestion, 1500);
       } else {
         showResults();
@@ -307,33 +391,10 @@
     }
 
     function showResults() {
-  questionEl.textContent = "🎉 ¡Excelente trabajo, astronauta!";
-  optionsEl.innerHTML = "";
-  resultEl.textContent = `Tu puntuación: ${score}/${currentQuiz.length}`;
-  showEndButtons(); 
-}
-   
-  // 🎯 Mostrar los botones al finalizar el quiz
-  function showEndButtons() {
-    document.getElementById("restart-btn").style.display = "block";
-    document.getElementById("astronautas-btn").style.display = "block";
-    document.getElementById("otroquiz-btn").style.display = "block";
-  }
-
-  // 🌍 Acciones de cada botón
-  document.getElementById("restart-btn").addEventListener("click", () => {
-    window.location.href = "index.html";
-  });
-
-  document.getElementById("astronautas-btn").addEventListener("click", () => {
-    window.location.href = "kids.html";
-  });
-
-  document.getElementById("otroquiz-btn").addEventListener("click", () => {
-    window.location.href = "kids_quiz.html"; 
-  });
-
-
-</script>
+      questionEl.textContent = "🎉 ¡Excelente trabajo, astronauta!";
+      optionsEl.innerHTML = "";
+      resultEl.textContent = `Tu puntuación: ${score}/${currentQuiz.length}`;
+    }
+  </script>
 </body>
 </html>
