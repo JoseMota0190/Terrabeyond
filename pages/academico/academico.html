@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Exploración General – TerraBeyond</title>
+  <title>Laboratorio Académico – TerraBeyond</title>
   <link rel="icon" href="../../assets/images/favicon.png">
-  <!-- IMPORTANTE: asegurate de que esta ruta exista -->
   <link rel="stylesheet" href="../../css/styles.css">
-
+  <link rel="stylesheet" href="../../css/academico.css">
 </head>
+
 <body>
   <!-- Barra de navegación -->
   <nav class="navbar">
@@ -20,11 +20,11 @@
     </a>
 
     <div class="nav-links">
-      <a href="../academico/academico.html" class="nav-button lab-button">
+      <a href="../academico/academico.html" class="nav-button lab-button active">
         <span class="nav-icon">🔬</span>
         <span class="nav-text">Laboratorio</span>
       </a>
-      <a href="../general/general.html" class="nav-button explore-button active">
+      <a href="../general/general.html" class="nav-button explore-button">
         <span class="nav-icon">🪐</span>
         <span class="nav-text">Exploración</span>
       </a>
@@ -35,21 +35,34 @@
     </div>
   </nav>
 
-<main>
+ <main>
+  <!-- Contenido principal -->
   <section class="cards">
-    
-</section>
-    
+    <div class="academico-container">
+      <h1>🔭 Analizador de Curvas de Luz</h1>
+      <p>
+        Sube un archivo CSV con los datos del brillo estelar para analizar posibles tránsitos planetarios.
+      </p>
+
+      <form id="csvForm">
+        <input type="file" id="csvFile" accept=".csv" required>
+        <button type="submit">Analizar Archivo</button>
+      </form>
+
+      <div id="result" class="result-box"></div>
+    </div>
+  </section>
 </main>
-  <!-- Footer -->
-  <footer>
-    <p>
-      <a href="../../contacto.html">Contacto</a> | 
-      <a href="#">Recursos NASA</a>
-    </p>
-  </footer>
+
+<!-- Footer -->
+<footer>
+  <p>
+    <a href="../../contacto.html">Contacto</a> |
+    <a href="#">Recursos NASA</a>
+  </p>
+</footer>
+
+
+  <script src="../../js/academico.js"></script>
 </body>
 </html>
-
-
-
