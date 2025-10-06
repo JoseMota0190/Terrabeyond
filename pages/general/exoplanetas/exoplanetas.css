@@ -1,0 +1,241 @@
+/* base visual y tipografías */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  background: radial-gradient(ellipse at bottom, #0b0f1a 0%, #000 100%);
+  overflow-x: hidden;
+}
+
+#stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: transparent;
+}
+
+/* ===================================== */
+/* NAVBAR                                */
+/* ===================================== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #003366; 
+    position: fixed; 
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.logo-container {
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+}
+
+.logo-link {
+    text-decoration: none;
+}
+
+.logo-container img {
+    height: 40px;
+    width: auto;
+}
+
+.logo-text {
+    color: #FFFFFF; 
+    font-size: 2.2rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+     font-family: 'Public Sans Web', sans-serif; 
+}
+
+
+.nav-links a {
+    color: #FFFFFF; 
+    text-decoration: none;
+    font-weight: 500;
+     font-family: 'Public Sans Web', sans-serif; 
+
+    /* Propiedades corregidas: */
+    border: none;
+    border-radius: 0; 
+    font-size: 1.2rem; /* El tamaño de fuente principal se define aquí */
+    padding: 0.5rem 0.8rem;
+    
+    /* Para alinear ícono y texto */
+    display: inline-flex;
+    align-items: center;
+    gap: 5px; 
+    
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    background-color: transparent; 
+    color: var(--accent-general); 
+    border-color: transparent; 
+}
+
+/* NUEVA REGLA PARA RESALTAR EL TEXTO ACTIVO */
+.nav-links a.active .nav-text {
+    font-weight: bold;
+}
+
+/* ================================================== */
+/* =      Estilos para el Pedestal de Hologramas    = */
+/* ================================================== */
+
+/* Contenedor principal de la sección */
+.hologram-pedestal-section {
+    padding: 80px 20px;
+    text-align: center;
+    color: #fff;
+    overflow: hidden; /* Evita que los efectos se salgan */
+}
+
+.pedestal-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.pedestal-container h2 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: #00aaff; /* Un color cian brillante */
+}
+
+.pedestal-container p {
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto 50px auto;
+    color: #ccc;
+}
+
+/* La base del pedestal */
+.pedestal-base {
+    height: 50px;
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 10px 10px 0 0;
+    box-shadow: inset 0 5px 15px rgba(0, 0, 0, 0.5);
+    margin: 0 auto;
+    width: 80%;
+}
+
+/* El display donde se muestran los hologramas */
+.hologram-display {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    padding: 0 20px;
+    margin-bottom: -10px; /* Se superpone ligeramente a la base */
+    position: relative;
+    z-index: 10;
+}
+
+.hologram-item {
+    width: 18%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* La "proyección" que contiene la luz y la imagen */
+.hologram-projection {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* La imagen del planeta con el efecto */
+.hologram-projection img {
+    width: 100%;
+    height: auto;
+    opacity: 0.7; /* Semi-transparente */
+    filter: drop-shadow(0 0 15px #00aaff) brightness(1.2); /* Sombra y brillo */
+    animation: float 6s ease-in-out infinite; /* Animación de flotar */
+}
+
+/* La luz que emana de la base */
+.hologram-light {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 30px;
+    background: radial-gradient(circle, rgba(0, 170, 255, 0.6) 0%, rgba(0, 170, 255, 0) 70%);
+    animation: flicker 2s infinite linear; /* Animación de parpadeo */
+}
+
+/* Efecto de líneas de escaneo del holograma */
+.hologram-projection::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 170, 255, 0.2) 1px,
+        transparent 1px
+    );
+    background-size: 100% 4px; /* Grosor de las líneas */
+    animation: scanlines 10s linear infinite; /* Animación de escaneo */
+    pointer-events: none; /* Para que no interfiera con el ratón */
+}
+
+.hologram-info h3 {
+    font-weight: normal;
+    color: #00aaff;
+    text-shadow: 0 0 5px #00aaff;
+}
+
+/* Animaciones */
+
+/* Animación para que el planeta flote */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Animación para el parpadeo de la luz */
+@keyframes flicker {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 0.5; }
+}
+
+/* Animación para las líneas de escaneo */
+@keyframes scanlines {
+    from { background-position: 0 0; }
+    to { background-position: 0 -50px; }
+}
+
+/* Añade un retraso a la animación de cada planeta para que no se muevan todos a la vez */
+.hologram-item:nth-child(2) .hologram-projection img { animation-delay: 0.5s; }
+.hologram-item:nth-child(3) .hologram-projection img { animation-delay: 1.5s; }
+.hologram-item:nth-child(4) .hologram-projection img { animation-delay: 1s; }
+.hologram-item:nth-child(5) .hologram-projection img { animation-delay: 2s; }
+
+.timeline-footer {
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.85rem;
+  color: #aaa;
+  border-top: 1px solid #111;
+}
